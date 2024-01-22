@@ -35,11 +35,19 @@ function playGame(userChoice) {
   );
 }
 
-let score ={
-  win:0,
-  tie:0,
-  lost:0,
-  displayScore(){
-    return `Won ${score.win} Tie ${score.tie} Lost ${score.lost}`
-  }
+let scoreStr = localStorage.getItem('Score');
+let score = JSON.parse(scoreStr) ||{}
+if (scoreStr !== null){
+  score = JSON.parse(scoreStr);
+}
+else{
+  score ={
+    win:0,
+    tie:0,
+    lost:0,
+  };
+}
+
+score.displayScore = function(){
+  return `Won ${score.win} Tie ${score.tie} Lost ${score.lost}`
 };
