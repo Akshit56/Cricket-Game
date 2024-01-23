@@ -36,18 +36,26 @@ function playGame(userChoice) {
 }
 
 let scoreStr = localStorage.getItem('Score');
-let score = JSON.parse(scoreStr) ||{}
-if (scoreStr !== null){
-  score = JSON.parse(scoreStr);
-}
-else{
-  score ={
-    win:0,
-    tie:0,
-    lost:0,
-  };
-}
-
-score.displayScore = function(){
-  return `Won ${score.win} Tie ${score.tie} Lost ${score.lost}`
+let score = JSON.parse(scoreStr) || {
+  win: 0,
+  tie: 0,
+  lost: 0,
 };
+score.displayScore = function () {
+  return `Won ${score.win} Tie ${score.tie} Lost ${score.lost}`;
+};
+
+function resetButton() {
+  localStorage.clear();
+  score = {
+    win: 0,
+    tie: 0,
+    lost: 0,
+  };
+  score.displayScore = function () {
+    return `Won ${score.win} Tie ${score.tie} Lost ${score.lost}`;
+  };
+
+  // Set the updated score object back into local storage
+  localStorage.setItem('Score', JSON.stringify(score));
+}
