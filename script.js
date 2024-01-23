@@ -30,9 +30,13 @@ function playGame(userChoice) {
   let computerChoice = randomNumber();
   let resultMsg = getResult(userChoice, computerChoice);
   localStorage.setItem('Score', JSON.stringify(score));
-  alert(
-    `You chose ${userChoice}\nComputer chose ${computerChoice}\nResult: ${resultMsg}\n${score.displayScore()}`
-  );
+  document.querySelector('#user-move').innerText = `You chose ${userChoice}`
+  document.querySelector('#computer-move').innerText = `Computer chose ${computerChoice}`
+  document.querySelector('#final-result').innerText = `${resultMsg}`
+  document.querySelector('#final-score').innerText = score.displayScore();
+  // alert(
+  //   `You chose ${userChoice}\nComputer chose ${computerChoice}\nResult: ${resultMsg}\n${score.displayScore()}`
+  // );
 }
 
 let scoreStr = localStorage.getItem('Score');
@@ -58,4 +62,8 @@ function resetButton() {
 
   // Set the updated score object back into local storage
   localStorage.setItem('Score', JSON.stringify(score));
+  document.querySelector('#user-move').innerText = '';
+  document.querySelector('#computer-move').innerText = '';
+  document.querySelector('#final-result').innerText = '';
+  document.querySelector('#final-score').innerText = 'Won 0 Tie 0 Lost 0';
 }
